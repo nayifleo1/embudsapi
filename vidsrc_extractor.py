@@ -1438,11 +1438,349 @@ Or use automatic subtitles in your player.
             logger.debug(f"Error generating placeholder subtitle: {str(e)}")
             return None
 
+    def extract_with_direct_api(self, content_id, is_tv=False, season=None, episode=None):
+        """
+        Extract stream links using direct API calls without browser automation
+        Based on the Node.js implementation
+        
+        Args:
+            content_id: TMDB ID of the movie or TV show
+            is_tv: Boolean indicating if it's a TV show
+            season: Season number (only for TV shows)
+            episode: Episode number (only for TV shows)
+            
+        Returns:
+            Dictionary containing sources and subtitles
+        """
+        try:
+            domain = "https://embed.su"
+            headers = {
+                'User-Agent': self.user_agent,
+                'Referer': domain,
+                'Origin': domain,
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Connection': 'keep-alive',
+            }
+            
+            # Construct URL based on content type
+            if is_tv and season is not None and episode is not None:
+                url = f"{domain}/embed/tv/{content_id}/{season}/{episode}"
+            else:
+                url = f"{domain}/embed/movie/{content_id}"
+                
+            logger.info(f"Fetching content from URL: {url}")
+            
+            # First request to get the hash
+            response = self.session.get(url, headers=headers, timeout=10)
+            if response.status_code != 200:
+                logger.error(f"Failed to fetch content page: {response.status_code}")
+                return {"sources": [], "subtitles": []}
+                
+            html_content = response.text
+            
+            # Extract the hash encode pattern
+            hash_encode_match = re.search(r'JSON\.parse\(atob\(\`([^\`]+)', html_content)
+            if not hash_encode_match:
+                logger.error("Could not find hash encode pattern in response")
+                return {"sources": [], "subtitles": []}
+                
+            hash_encode = hash_encode_match.group(1)
+            if not hash_encode:
+                logger.error("Empty hash encode value")
+                return {"sources": [], "subtitles": []}
+                
+            # Decode hash_encode - add proper padding
+            try:
+                # Add padding if needed (this is critical)
+                padding = 4 - (len(hash_encode) % 4)
+                if padding != 4:
+                    hash_encode += '=' * padding
+                
+                # Convert URL-safe characters if present
+                hash_encode = hash_encode.replace('-', '+').replace('_', '/')
+                
+                # Now decode
+                hash_decode_bytes = base64.b64decode(hash_encode)
+                hash_decode_str = hash_decode_bytes.decode('utf-8')
+                hash_decode = json.loads(hash_decode_str)
+                
+                m_encrypt = hash_decode.get('hash')
+                
+                if not m_encrypt:
+                    logger.error("No hash found in decoded data")
+                    return {"sources": [], "subtitles": []}
+                    
+                # First level decode - also with proper padding
+                padding = 4 - (len(m_encrypt) % 4)
+                if padding != 4:
+                    m_encrypt += '=' * padding
+                    
+                m_encrypt = m_encrypt.replace('-', '+').replace('_', '/')
+                
+                first_decode_bytes = base64.b64decode(m_encrypt)
+                first_decode_str = first_decode_bytes.decode('utf-8')
+                first_decode_parts = first_decode_str.split(".")
+                
+                # Reverse each part
+                reversed_parts = [part[::-1] for part in first_decode_parts]
+                
+                # Join parts, reverse the result, and decode as base64
+                combined = ''.join(reversed_parts)[::-1]
+                
+                # Add padding again for the final decode
+                padding = 4 - (len(combined) % 4)
+                if padding != 4:
+                    combined += '=' * padding
+                    
+                combined = combined.replace('-', '+').replace('_', '/')
+                
+                second_decode_bytes = base64.b64decode(combined)
+                second_decode_str = second_decode_bytes.decode('utf-8')
+                second_decode = json.loads(second_decode_str)
+                
+                if not second_decode or not isinstance(second_decode, list):
+                    logger.error("Invalid format for second decode result")
+                    return {"sources": [], "subtitles": []}
+                    
+            except Exception as e:
+                logger.error(f"Error during hash decoding: {str(e)}")
+                
+                # Try alternative approach (similar to Node.js stringAtob function)
+                try:
+                    logger.info("Trying alternative decoding approach")
+                    # This is a custom implementation similar to the Node.js version
+                    def custom_atob(s):
+                        return base64.b64decode(s.replace('-', '+').replace('_', '/') + '==').decode('utf-8')
+                    
+                    hash_decode = json.loads(custom_atob(hash_encode))
+                    m_encrypt = hash_decode.get('hash')
+                    
+                    if not m_encrypt:
+                        return {"sources": [], "subtitles": []}
+                    
+                    first_decode = custom_atob(m_encrypt).split(".")
+                    first_decode = [part[::-1] for part in first_decode]
+                    
+                    combined = ''.join(first_decode)[::-1]
+                    second_decode = json.loads(custom_atob(combined))
+                    
+                    if not second_decode or not isinstance(second_decode, list):
+                        return {"sources": [], "subtitles": []}
+                except Exception as e2:
+                    logger.error(f"Error during alternative hash decoding: {str(e2)}")
+                    return {"sources": [], "subtitles": []}
+                
+            # Extract sources and subtitles
+            sources = []
+            subtitles = []
+            
+            for item in second_decode:
+                if not isinstance(item, dict) or item.get('name', '').lower() != "viper":
+                    continue
+                    
+                url_direct = f"{domain}/api/e/{item.get('hash')}"
+                
+                try:
+                    response = self.session.get(url_direct, headers={
+                        'Referer': domain,
+                        'User-Agent': self.user_agent,
+                        'Accept': '*/*'
+                    }, timeout=10)
+                    
+                    if response.status_code != 200:
+                        logger.debug(f"Failed to get direct URL data: {response.status_code}")
+                        continue
+                        
+                    data_direct = response.json()
+                    
+                    if not data_direct.get('source'):
+                        logger.debug("No source found in direct data")
+                        continue
+                        
+                    # Extract subtitles
+                    if 'subtitles' in data_direct and isinstance(data_direct['subtitles'], list):
+                        for sub in data_direct['subtitles']:
+                            if 'file' in sub and 'label' in sub:
+                                label = sub['label'].split(' ')[0] if ' ' in sub['label'] else sub['label']
+                                subtitles.append({
+                                    'url': sub['file'],
+                                    'lang': label,
+                                    'kind': 'subtitles',
+                                    'src': sub['file'],
+                                    'label': sub['label']
+                                })
+                    
+                    # Extract stream qualities from m3u8
+                    source_url = data_direct['source']
+                    playlist_response = self.session.get(source_url, headers=headers, timeout=10)
+                    
+                    if playlist_response.status_code != 200:
+                        logger.debug(f"Failed to get playlist: {playlist_response.status_code}")
+                        continue
+                        
+                    playlist_content = playlist_response.text
+                    
+                    # Extract quality streams
+                    pattern_size = [line for line in playlist_content.split('\n') if '/proxy/' in line]
+                    
+                    direct_quality = []
+                    for pattern_item in pattern_size:
+                        try:
+                            # Extract quality from URL
+                            parts = pattern_item.split('/')
+                            if len(parts) < 3:
+                                continue
+                                
+                            # Get the base64 part that contains the resolution
+                            base64_part = parts[-2]  # Second to last part
+                            try:
+                                # Add padding if needed
+                                padding = 4 - (len(base64_part) % 4)
+                                if padding != 4:
+                                    base64_part += '=' * padding
+                                
+                                base64_part = base64_part.replace('-', '+').replace('_', '/')
+                                decoded_part = base64.b64decode(base64_part).decode('utf-8')
+                                size_quality = int(decoded_part)
+                            except:
+                                size_quality = 1080  # Default
+                                
+                            # Build direct URL
+                            d_url = f"{domain}{pattern_item}"
+                            
+                            # Transform to direct URL by removing proxy prefix
+                            direct_url = d_url.replace(f"{domain}/api/proxy/viper/", "").replace(".png", ".m3u8")
+                            
+                            direct_quality.append({
+                                'file': d_url,  # Original proxy URL
+                                'direct_file': direct_url,  # Direct URL without proxy
+                                'type': 'hls',
+                                'quality': f"{size_quality}p",
+                                'lang': 'en'
+                            })
+                        except Exception as e:
+                            logger.debug(f"Error processing pattern item: {str(e)}")
+                            continue
+                    
+                    if not direct_quality:
+                        logger.debug("No quality options found")
+                        continue
+                        
+                    sources.append({
+                        'provider': 'EmbedSu',
+                        'files': direct_quality,
+                        'headers': {
+                            'Referer': domain,
+                            'User-Agent': self.user_agent,
+                            'Origin': domain
+                        }
+                    })
+                    
+                except Exception as e:
+                    logger.error(f"Error processing direct URL: {str(e)}")
+                    continue
+            
+            return {
+                'sources': sources,
+                'subtitles': subtitles
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in extract_with_direct_api: {str(e)}")
+            return {
+                'sources': [],
+                'subtitles': []
+            }
+
+    def get_direct_links(self, content_id, is_tv=False, season=None, episode=None):
+        """
+        Get direct stream links using the API-based method.
+        This is a wrapper for extract_with_direct_api with standardized output.
+        
+        Args:
+            content_id: TMDB ID or IMDB ID
+            is_tv: Boolean indicating if it's a TV show
+            season: Season number (only for TV shows)
+            episode: Episode number (only for TV shows)
+            
+        Returns:
+            Dictionary with standardized streams and subtitles format
+        """
+        result = self.extract_with_direct_api(content_id, is_tv, season, episode)
+        
+        if not result or not result.get('sources'):
+            logger.warning("No sources found with API method")
+            return {'streams': [], 'subtitles': []}
+            
+        # Format streams in the standard format
+        streams = []
+        for source in result.get('sources', []):
+            for file in source.get('files', []):
+                stream_info = {
+                    'type': file.get('type', 'hls'),
+                    'quality': file.get('quality', 'auto'),
+                    'url': file.get('file')
+                }
+                
+                # Add direct URL if it's a proxy URL
+                if 'direct_file' in file:
+                    stream_info['direct_url'] = file['direct_file']
+                    
+                streams.append(stream_info)
+                
+        # Format subtitles in the standard format
+        formatted_subtitles = []
+        for subtitle in result.get('subtitles', []):
+            formatted_subtitles.append({
+                'kind': 'subtitles',
+                'src': subtitle.get('url', subtitle.get('src', '')),
+                'label': subtitle.get('label', 'Unknown'),
+                'language': subtitle.get('lang', 'unknown')
+            })
+            
+        return {
+            'streams': streams,
+            'subtitles': formatted_subtitles
+        }
+        
+    def get_quality_from_url(self, url):
+        """Extract video quality from URL using base64 decoding"""
+        try:
+            parts = url.split('/')
+            if len(parts) < 3:
+                return 1080  # Default quality
+                
+            # Get the base64 part (second-to-last segment in URL)
+            base64_part = parts[-2]
+            
+            # Decode base64
+            try:
+                decoded = base64.b64decode(base64_part).decode('utf-8')
+                quality = int(decoded)
+                return quality
+            except:
+                return 1080  # Default if decoding fails
+        except Exception as e:
+            logger.debug(f"Error extracting quality from URL: {str(e)}")
+            return 1080  # Default quality
+
     def get_stream_and_subtitle_links(self, movie_id):
         """Get stream links and subtitles for a movie using advanced techniques"""
         self.stream_links = []  # Reset stream links
         self.subtitles = []  # Reset subtitles
         
+        # First try the API-based method which is faster and more reliable
+        logger.info("Trying direct API-based method first...")
+        api_result = self.get_direct_links(movie_id)
+        
+        if api_result and api_result.get('streams'):
+            logger.info(f"Direct API method successful, found {len(api_result.get('streams', []))} streams")
+            return api_result
+            
+        logger.info("Direct API method unsuccessful, falling back to browser method...")
+        
+        # If API method fails, continue with the browser-based method
         try:
             if not self.driver:
                 self.start_browser()
@@ -1974,33 +2312,73 @@ Or use automatic subtitles in your player.
             return False
 
 def main():
-    # Example usage
+    """Example usage of StreamExtractor for both movies and TV shows"""
     extractor = StreamExtractor(headless=False)
     try:
-        # Use the original movie ID for testing
-        movie_id = "310131"
+        # Command line argument parsing
+        import argparse
+        parser = argparse.ArgumentParser(description='Extract stream links from embed.su')
+        parser.add_argument('--id', type=str, help='TMDB ID or IMDB ID')
+        parser.add_argument('--tv', action='store_true', help='Set this flag for TV shows')
+        parser.add_argument('--season', type=int, help='Season number (for TV shows)')
+        parser.add_argument('--episode', type=int, help='Episode number (for TV shows)')
+        parser.add_argument('--browser', action='store_true', help='Force browser-based extraction')
+        args = parser.parse_args()
+        
+        # Default values if no arguments provided (for testing)
+        content_id = args.id if args.id else "310131"  # Default: The Batman (2022)
+        is_tv = args.tv
+        season = args.season
+        episode = args.episode
+        force_browser = args.browser
+        
+        # Display what we're extracting
+        content_type = "TV Show" if is_tv else "Movie"
+        if is_tv and season is not None and episode is not None:
+            logger.info(f"Extracting {content_type} ID: {content_id}, Season: {season}, Episode: {episode}")
+        else:
+            logger.info(f"Extracting {content_type} ID: {content_id}")
         
         # Set a timeout for testing (in seconds)
         start_time = time.time()
-        max_runtime = 60  # 1 minute max
         
-        result = extractor.get_stream_and_subtitle_links(movie_id)
+        # Try the faster API method first (unless browser is forced)
+        result = None
+        if not force_browser:
+            logger.info("Trying direct API-based extraction method...")
+            if is_tv and season is not None and episode is not None:
+                result = extractor.get_direct_links(content_id, is_tv=True, season=season, episode=episode)
+            else:
+                result = extractor.get_direct_links(content_id)
+        
+        # If API method didn't work or browser is forced, fall back to browser method
+        if force_browser or not result or not result.get('streams'):
+            logger.info("Direct API method failed or browser forced, using browser-based extraction...")
+            result = extractor.get_stream_and_subtitle_links(content_id)
+        else:
+            logger.info("Direct API method successful!")
         
         print(f"\nExtraction completed in {time.time() - start_time:.2f} seconds")
         
-        print("\nExtracted Stream Links:")
+        # Print proxy and direct URLs separately
+        print("\nProxy Stream Links (for web players):")
         for i, link_info in enumerate(result['streams']):
             print(f"{i+1}. [{link_info['type']} - {link_info['quality']}] {link_info['url']}")
-            if 'decoded_info' in link_info:
-                print(f"   Decoded: {link_info['decoded_info']}")
+                
+        print("\nDirect Stream Links (for media players):")
+        for i, link_info in enumerate(result['streams']):
             if 'direct_url' in link_info:
-                print(f"   Direct URL: {link_info['direct_url']}")
+                print(f"{i+1}. [{link_info['type']} - {link_info['quality']}] {link_info['direct_url']}")
+            else:
+                print(f"{i+1}. [{link_info['type']} - {link_info['quality']}] {link_info['url']} (No direct URL available)")
                 
         print("\nExtracted Subtitle Tracks:")
         for i, subtitle in enumerate(result['subtitles']):
             print(f"{i+1}. [{subtitle.get('language', 'unknown')}] {subtitle.get('label', 'Unknown')}: {subtitle.get('src', '')}")
     except KeyboardInterrupt:
         print("\nExtraction stopped by user")
+    except Exception as e:
+        print(f"Error: {str(e)}")
     finally:
         if extractor.driver:
             try:

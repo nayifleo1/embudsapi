@@ -1,0 +1,94 @@
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928159431}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928160054}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928160054}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928160643}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928160643}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928160925}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928160925}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928160998}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928160998}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161272}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161273}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161284}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161285}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161294}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161295}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161451}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161451}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161462}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161462}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161567}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161568}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161583}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161583}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161703}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161704}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161760}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161760}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161816}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161816}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161819}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161819}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "The next request for the Private Access Token challenge may return a 401 and show a warning in console."', 'source': 'console-api', 'timestamp': 1740928161871}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/pat/91a1d088fc3e213a/1740928160399/ce9590b360bb840c2022c44ca280fb94374d4d4ca392a4641c56161ea8d5e0e6/Jl2mV3prHJ4LAKk - Failed to load resource: the server responded with a status of 401 ()', 'source': 'network', 'timestamp': 1740928161904}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0 Refused to run the JavaScript URL because it violates the following Content Security Policy directive: "script-src \'nonce-oMdv5XG8bMPmPCzu\' \'unsafe-eval\'". Either the \'unsafe-inline\' keyword, a hash (\'sha256-...\'), or a nonce (\'nonce-...\') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the \'unsafe-hashes\' keyword is present.\n', 'source': 'security', 'timestamp': 1740928161939}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0 Refused to run the JavaScript URL because it violates the following Content Security Policy directive: "script-src \'nonce-oMdv5XG8bMPmPCzu\' \'unsafe-eval\'". Either the \'unsafe-inline\' keyword, a hash (\'sha256-...\'), or a nonce (\'nonce-...\') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the \'unsafe-hashes\' keyword is present.\n', 'source': 'security', 'timestamp': 1740928161939}
+{'level': 'SEVERE', 'message': 'https://vidsrcme.vidsrc.icu/favicon.ico - Failed to load resource: the server responded with a status of 404 ()', 'source': 'network', 'timestamp': 1740928161955}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928161989}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928161990}
+{'level': 'DEBUG', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 Error', 'source': 'console-api', 'timestamp': 1740928162004}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162006}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162007}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 /.*.*=.*/', 'source': 'console-api', 'timestamp': 1740928162011}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 /.*.*=.*/', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 function () { [native code] }', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 function () { [native code] }', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 a', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 a', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'DEBUG', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'DEBUG', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162012}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162013}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162013}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162014}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162014}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162014}
+{'level': 'INFO', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162014}
+{'level': 'WARNING', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162016}
+{'level': 'WARNING', 'message': 'https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/orchestrate/chl_api/v1?ray=91a1d088fc3e213a&lang=auto 0:20888 "%c%d" "font-size:0;color:transparent" NaN', 'source': 'console-api', 'timestamp': 1740928162016}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162033}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162033}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162041}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162041}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162128}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162128}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162156}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162156}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162170}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162170}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928162182}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928162183}
+{'level': 'SEVERE', 'message': 'https://challenges.cloudflare.com/turnstile/v0/api.js 0:11024 Uncaught a: [Cloudflare Turnstile] Error: 600010.', 'source': 'javascript', 'timestamp': 1740928162304}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:12910 div', 'source': 'console-api', 'timestamp': 1740928162313}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14011 Sun Mar 02 2025 20:39:21 GMT+0530 (India Standard Time)', 'source': 'console-api', 'timestamp': 1740928162313}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14388 function(){}', 'source': 'console-api', 'timestamp': 1740928162313}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14977 Array(50)', 'source': 'console-api', 'timestamp': 1740928162389}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:12910 div', 'source': 'console-api', 'timestamp': 1740928162811}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14011 Sun Mar 02 2025 20:39:21 GMT+0530 (India Standard Time)', 'source': 'console-api', 'timestamp': 1740928162811}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14388 function(){}', 'source': 'console-api', 'timestamp': 1740928162811}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14977 Array(50)', 'source': 'console-api', 'timestamp': 1740928162884}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:12910 div', 'source': 'console-api', 'timestamp': 1740928163312}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14011 Sun Mar 02 2025 20:39:21 GMT+0530 (India Standard Time)', 'source': 'console-api', 'timestamp': 1740928163312}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14388 function(){}', 'source': 'console-api', 'timestamp': 1740928163312}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14977 Array(50)', 'source': 'console-api', 'timestamp': 1740928163392}
+{'level': 'DEBUG', 'message': 'https://p.dtsan.net/dtsa.js 50:12 "%c [DTSA-info-0ms] creating new session" "background: #222222; color: #a8d5e5"', 'source': 'console-api', 'timestamp': 1740928163583}
+{'level': 'DEBUG', 'message': 'https://p.dtsan.net/dtsa.js 50:12 "%c [DTSA-info-4ms] persisting session" "background: #222222; color: #a8d5e5"', 'source': 'console-api', 'timestamp': 1740928163587}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:12910 div', 'source': 'console-api', 'timestamp': 1740928163816}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14011 Sun Mar 02 2025 20:39:21 GMT+0530 (India Standard Time)', 'source': 'console-api', 'timestamp': 1740928163816}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14388 function(){}', 'source': 'console-api', 'timestamp': 1740928163817}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14977 Array(50)', 'source': 'console-api', 'timestamp': 1740928163890}
+{'level': 'INFO', 'message': 'console-api 0:22 "undetected chromedriver 1337!"', 'source': 'console-api', 'timestamp': 1740928163928}
+{'level': 'SEVERE', 'message': "javascript 12:45 Uncaught TypeError: Cannot read properties of null (reading 'hasAttribute')", 'source': 'javascript', 'timestamp': 1740928163928}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:12910 div', 'source': 'console-api', 'timestamp': 1740928164312}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14011 Sun Mar 02 2025 20:39:21 GMT+0530 (India Standard Time)', 'source': 'console-api', 'timestamp': 1740928164313}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14388 function(){}', 'source': 'console-api', 'timestamp': 1740928164313}
+{'level': 'INFO', 'message': 'https://cdn.vidsrc.stream/disable-devtool@0.3.6/disable-devtool.min.js 0:14977 Array(50)', 'source': 'console-api', 'timestamp': 1740928164394}

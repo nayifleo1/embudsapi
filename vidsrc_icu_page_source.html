@@ -1,0 +1,143 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="" crossorigin="anonymous">
+<link rel="stylesheet" href="/style_rcp-e600e6.css?t=1731967699">
+
+<style>
+    body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+    .hidden {
+        display:none;
+    }
+    
+    #asdf {
+        width: 0px;
+        height: 0px;
+    }
+    
+    #iframe_title {
+        position: absolute;
+        top: calc(50% + 45px);
+        font-size: 1.1em;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        width: calc(100% - 30px);
+        text-align: center;
+        padding: 0px 15px;
+    }
+</style>
+</head>
+<body data-i="903747_1x1">
+    
+    
+        <!--<div id="pop_asdf" style="position:absolute; width:100%; height:100%; z-index:2147483650; pointer-events: none;"></div>-->
+        
+    <!--<div id="loading_overlay"></div>-->
+    <div id="the_frame" style="background-image: none;">
+                <div id="pl_but_background" style="background-image: url('//image.tmdb.org/t/p/w780/gc8PfyTqzqltKPW3X0cIVUGmagz.jpg');">
+            <div id="iframe_title">
+                Breaking Bad (2008) S01E01            </div>
+            <i id="pl_but" class="fas fa-play"></i>
+        </div>
+            </div>
+    
+    <div id="hidden" style="display:hidden;"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha256-1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE/Y=" crossorigin="anonymous"></script>
+    <script src="/base64.js?t="></script>
+    
+    
+    <script>
+    
+    
+    /*
+    $(document).ready(function(){
+        
+        
+        if($.cookie('pop_asdf')){
+            $("#pop_asdf").addClass("hidden");
+        }
+        
+        $("#pop_asdf").click(function(){
+            if(!$.cookie('pop_asdf')){
+                if($.cookie('pop_asdf_tmp') >= 3){
+                    var date = new Date();
+                    date.setTime(date.getTime() + (10800 * 1000));
+                    $.cookie('pop_asdf', 1, { expires: date });
+                    $("#pop_asdf").addClass("hidden");
+                }else{
+                    var cookie_value = 1;
+                    if($.cookie('pop_asdf_tmp'))
+                        cookie_value = $.cookie('pop_asdf_tmp');
+                        
+                    cookie_value++;
+                    
+                    $.cookie('pop_asdf_tmp', cookie_value);
+                    $(this).addClass("hidden");
+                    setTimeout(function(){
+                        $("#pop_asdf").removeClass("hidden");
+                    }, 59000);
+                }
+            }
+        });
+    });
+    */
+    
+        
+    $("#pl_but_background , #pl_but").click(function(){
+        loadIframe();
+    });
+    
+        
+    function loadIframe(data = 1){
+        if(data == 1){
+            $("#the_frame").removeAttr("style");
+            $("#the_frame").html("");
+            $('<iframe>', {
+               id: 'player_iframe',
+               src: '/prorcp/ZTllMjdjOGNhN2UwOTc2YWE4NDNiODZmMDE2MzI3YjM6ZDNsbFprMTBMMGR3Y0hvMFpVaFROVnBGVVROeWJpOTJSRmxST0U5blJFVkRXRkIxTUVaa1prTTRhM0Z2UTFvcmVETnNUVmxJWlRaVWFVczRjMmNyZW5GWVNsWmtPRVZsWmtWaE1rSjFRMmhqU0VzeWMyaFllbXd5ZW5KTGQzY3dNMUp3TUV0VU5IcFlkRGxVU1dwQ2NWSk9RMHBhV2tSdk5uUmxkSG94V2taNGRuQjFWV1p1YzBaQlVpOHpibFp2Y25GMk5VdDNkUzkyTlhSbUwxWTJLMkpITlhVek0zaG1UVTVMWlM5dVJtNXdhVFI2UzFReWJUbGFjMVZtVlcxMldUbGFUVmxHTVdNd1MyY3pZa3BpTTFWRksydHZSMU14WTA5RVVEaGllVGxoUmpoT2EyZGxWVWx1ZEc1M2VTc3JWbXhGWkVNeFdFUnBSVk5KU21oTFFWbFZZM05rYTBGYVFtbENiM1JQZUdOalRETmxVRXBPWlZSaVdDc3lUMVIyY1RkdlZGcEVWSGxIYlRaR2QwUTVWVTFPZFVaTFRGRXlORGhDTWtkbVZqUnhVU3RHVFhwUGMzTmtZblJ6VlVaamNtOVJNREpsUkRGaVExVTFUMGN2TmxjclpGZFpPRk0zUTBGVE0xSjJObnBqUVRremNXVklNak5WVDBzdmJVSmljMHBVWkdVcmVrZHJiazVoVFN0eVpGZHpObVZKUkdsV1ZrMXJWRk0wVDBKcWMxRmlaREo1VlRnclYxa3ZhR012U2pScFJrUkRNVlZHWVdvcmJtbDZkVU52TUZGb01qQTVOM2RQUjNSeWRHOTZUbE5GYkdWd2RVaDNZa1ZuUjBjMVVqQnlWQ3N2VkZjM1RUTlVWREY0Wm05R1dIaFZaVmRHTTFjeGFIVkpiVFlyYzJaMlprdzNSSFJsVFZseldXcFRjbTloU1V4a1ZsWkNRa0pYYWxodU0zZ3dVVU5GU2tKTVFURmpka2hUVG5WU2JEaHpUMGROYW1kVlpuUXJPRzlTTlM5RE1XZEtUMk01VDFkbGNISTRNQzlQV0N0VmFFNXFWM2RxU0ROdU0xbE9ZVllyYkhKNlMwczVSRTF2YjNkeU1qbHJkRXRVWjB4SmNUUlFjV3RoZGxkS2NrdFpXRkF5UkdOUU0xRnVhSFZWVFhZclkwbHdLemxuY0RsMU5Hb3paekJUYjI5aWVUSnZhbE5GVmxsS1MzSXpRazF0ZVRGeGJUZE5iV1Y0WkZkT1JVc3dTalJoWjJSSVVFbEpVbFpHVGxWRkszRk1WRXhWUWt0NWRXNXFPR0l4VjFwdU1GWktWMk5SWkVGbE5VaG9SVFExYW5GTFFYazROV3B6ZVhWNWRYTnlaSHBUT0VSSFVscHpNMEpJVURsRWNXZEtSREYzUm1zM1JtdHBZVFp6YmtSblRWVXlaM0ZqT1RNeWNERlVaV04yYTJwUFowa3dTR3hpU1RsdFJtY3pZemxoUmxocVVFdHhXbk4wUmpKR1MwaFRVRmd3WTFsclpGSlROamR3VTFKVFJtNXlLMFYxVEVwWWNsRjJObXMzV2xaWGVETnVZMmRIWnpSTGJIRnNPVlJGZWtsUlMyZDZkVGgyT1dKUWNGRnZkaXM1TDJweFdHeDVabko0VG1kd09EVlNaSEp4Wld4S1pTdFVVR3hhTm5kaFRIVmpSR0Z5TDJoSVdFTndjV1kzY20xSFlsQmFLMXBKUldScWVubExTRFIxVjBwaFNHVm1ZWEkyYlRWU1NXUXhUMHhPY1RNME0wTkRiSFZ6YW5wQ1lXUk5OVWxTV1ZoRlFrNXdWRWREYlhwdWNWcEdUM0JNYURsSk1IY3dWVVZJTUZwNE1sSTNVVkZJYkZOMGJVeG5XazFEUm1KNWVHWnlVbk5ZWTFGc2RHMUpTRGRLTjJNMFQzWlhTVU41ZUdoRGJ5OXVVMHhEZVVaS1FVOVVUWEprUWxKSE4yRkJaVlUyUkdsaFZsSm5ZMWR1YnpkamF6VjFaa3RNUjB0eE5IWlFVRU5qWjNvd05FRTVSazkwTlc1U1JVazBSSFZpVlZsSlMxcGlMM05zTjFKVFl6aEZTRkl2U0V4RFdtOVVWMlp1Y2t4TVVXNUdabWd2VFhSSE5XTTBRa0U0YTNwR0swUXllUzlJVlVGNWJGSmxOWGRJWVZSSU5XVmxhakJDYVV0VVNXbGtTVWhUVlZGcVdFMWFja1JQV0hjNEwyeGhVRnBhUkdaRmNtUndMeXR2TVNzcmQydzBTV05SYUVGM2QxQlZRek5xSzA1dlJuRXJjamRHUkRGRU5EVXdTMFZvVUU5b01YUnpZMlE0U0RCTVpGcFNWa0ZyVURGV1JtMWlhSGgyYlN0WVozRTVkazF6TURWag--',
+               frameborder: 0,
+               scrolling: 'no',
+               allowfullscreen: 'yes',
+               allow: "autoplay",
+               style: 'height: 100%; width: 100%;'
+            }).appendTo('#the_frame');
+            $("#player_iframe").on("load", function () {
+                $("#the_frame").attr("style","background-image: none;");
+            });
+        }
+    }
+    
+    // pm redirector
+    window.addEventListener('message', message => {
+        if (message.source == window) {
+            return; // Skip message in this event listener
+        }
+        
+        var the_iframe = document.getElementById('player_iframe');
+        
+        if(message.source == window.parent){
+            the_iframe.contentWindow.postMessage(message.data,'*');
+        }else{
+            window.parent.postMessage(message.data , '*');
+        }
+        
+        
+        
+    });
+        
+        
+        
+    </script>
+    
+    
+    
+    
+    
+    
+   
+
+
+</body></html>
